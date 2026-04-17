@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deducciones IRPF · CV · Renta 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F4F1EB;--navy:#162040;--gold:#C6883A;--gp:#FDF3E3;--card:#fff;--bd:#DDD8CE;--mu:#6B7A99;--gr:#1E7A4A;--gbg:#EBF7F1;--re:#B03030;--rbg:#FEF0F0;--bb:#EBF0FB}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy);font-size:14px;line-height:1.5}
+.app{display:grid;grid-template-columns:1fr 310px;grid-template-rows:auto 1fr;min-height:100vh}
+.hdr{grid-column:1/-1;background:var(--navy);color:#fff;padding:14px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff}
+.hdr p{font-size:11px;color:#8FA3CC;margin-top:1px}
+.tb{background:var(--gold);color:#fff;border-radius:50px;padding:6px 15px;font-weight:600;font-size:14px;text-align:right}
+.tb small{font-size:10px;display:block;opacity:.85}
+.main{grid-column:1;padding:18px 22px;overflow-y:auto}
+.side{grid-column:2;background:#fafaf7;border-left:1px solid var(--bd);position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.dp{background:var(--navy);padding:16px 18px;color:#fff}
+.dp h3{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8FA3CC;margin-bottom:10px}
+.df label{display:block;font-size:10px;color:#8FA3CC;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.df input,.df select{width:100%;background:#253560;border:1px solid #3D5280;border-radius:5px;padding:6px 9px;color:#fff;font-size:12px;outline:none;margin-bottom:8px;transition:.2s}
+.df input:focus,.df select:focus{border-color:var(--gold)}
+.df select option{background:#253560}
+.rp{padding:14px 14px 70px}
+.rp h3{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--navy);margin-bottom:10px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:5px}
+.re{color:var(--mu);font-size:12px;text-align:center;padding:18px 0;font-style:italic}
+.ri{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);gap:6px}
+.rin{font-size:11px;flex:1;line-height:1.3}
+.ria{font-weight:600;color:var(--gr);font-size:11px;white-space:nowrap}
+.rtrow{display:flex;justify-content:space-between;align-items:center;padding:10px 0 0;border-top:2px solid var(--navy);margin-top:4px}
+.rtl{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700}
+.rta{font-size:18px;font-weight:700;color:var(--gr)}
+.av{background:var(--gp);border:1px solid var(--gold);border-radius:5px;padding:8px 9px;font-size:10px;margin-top:10px;line-height:1.5}
+.cs{margin-bottom:14px}
+.ch{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--card);border-radius:8px;cursor:pointer;border:1px solid var(--bd);transition:.2s;box-shadow:0 1px 6px rgba(22,32,64,.06)}
+.ch:hover,.ch.open{border-color:var(--gold)}.ch.open{background:var(--gp)}
+.ci{font-size:17px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:5px;flex-shrink:0}
+.cn{flex:1}
+.ct{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700}
+.cc{font-size:10px;color:var(--mu);margin-top:1px}
+.ctg{font-size:14px;color:var(--mu);transition:transform .2s}
+.ch.open .ctg{transform:rotate(180deg)}
+.cb{display:none;margin-top:7px;grid-gap:7px}
+.cb.show{display:grid}
+.dc{background:var(--card);border-radius:7px;border:1px solid var(--bd);overflow:hidden;box-shadow:0 1px 4px rgba(22,32,64,.05)}
+.dc.open{border-color:var(--gold)}.dc.hv{border-left:4px solid var(--gr)}
+.dh{display:flex;align-items:center;gap:9px;padding:10px 13px;cursor:pointer}
+.dh:hover{background:rgba(22,32,64,.02)}
+.dn{font-size:10px;font-weight:600;color:var(--mu);background:var(--bg);border-radius:3px;padding:2px 5px;min-width:24px;text-align:center;flex-shrink:0}
+.dt{flex:1;font-size:12px;font-weight:500;line-height:1.3}
+.dp2{font-size:11px;font-weight:700;color:var(--gr);min-width:62px;text-align:right;flex-shrink:0}
+.dp2.z{color:var(--mu)}
+.dchv{font-size:12px;color:var(--mu);flex-shrink:0;transition:transform .2s}
+.dc.open .dchv{transform:rotate(180deg)}
+.db{border-top:1px solid var(--bd);padding:13px;display:none;background:rgba(248,246,241,.4)}
+.dc.open .db{display:block}
+.nm{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;font-weight:500}
+.req{background:#fff;border-left:3px solid var(--gold);border-radius:0 5px 5px 0;padding:8px 10px;margin-bottom:11px;font-size:11px;color:#4A5568;line-height:1.6}
+.req b{color:var(--navy);font-weight:600}
+.di{display:grid;gap:7px;margin-bottom:10px}
+.fr label{display:block;font-size:10px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.fr input,.fr select{width:100%;border:1px solid var(--bd);border-radius:4px;padding:6px 8px;font-size:12px;color:var(--navy);background:#fff;outline:none;transition:.2s}
+.fr input:focus,.fr select:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(198,136,58,.12)}
+.rb{border-radius:5px;padding:9px 11px;border:1px solid transparent}
+.rb.pos{background:var(--gbg);border-color:#A7D9BC}.rb.zer{background:var(--rbg);border-color:#F5C0C0}.rb.neu{background:var(--bb);border-color:#B8CCF0}
+.rl{font-size:9px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;opacity:.7}
+.rv{font-size:19px;font-weight:700;color:var(--gr);margin-top:1px}
+.rv.z{color:var(--re)}.rv.n{color:#2B5FC0}
+.rd{font-size:10px;color:var(--mu);margin-top:2px}
+@media(max-width:840px){.app{grid-template-columns:1fr}.side{position:relative;top:0;height:auto;border-left:none;border-top:1px solid var(--bd)}.main{padding:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hdr">
+  <div><h1>Deducciones IRPF · Comunitat Valenciana · Renta 2025</h1><p>Manual Práctico AEAT · 17/03/2026</p></div>
+  <div class="tb"><small>TOTAL ESTIMADO</small><span id="th">0,00 €</span></div>
+</header>
+<main class="main" id="cont"></main>
+<aside class="side">
+  <div class="dp">
+    <h3>Datos del Contribuyente</h3>
+    <div class="df">
+      <label>Modalidad de tributación</label>
+      <select id="mod" onchange="recalcAll()"><option value="i">Individual</option><option value="c">Conjunta</option></select>
+      <label>Base Liquidable total ([0500]+[0510]) €</label>
+      <input type="number" id="bl" placeholder="p.ej. 24000" oninput="recalcAll()">
+    </div>
+  </div>
+  <div class="rp">
+    <h3>Resumen de Deducciones</h3>
+    <div id="rl"><p class="re">Sin deducciones calculadas aún.</p></div>
+    <div class="av">⚠️ Estimación orientativa. Sujeta a cuota íntegra autonómica disponible y otras circunstancias individuales. Verifique en el borrador oficial.</div>
+  </div>
+</aside>
+</div>
+<script>
+const F=v=>v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
+const BL=()=>parseFloat(document.getElementById('bl').value)||0;
+const MOD=()=>document.getElementById('mod').value;
+function rBL(imp,bl,m,tr){
+  if(!bl||bl<=0)return imp;
+  const t=tr||{i:[27000,30000],c:[44000,47000]};
+  const[li,ls]=m==='i'?t.i:t.c;
+  if(bl<li)return imp;if(bl>=ls)return 0;
+  return imp*(1-(bl-li)/(ls-li));
+}
+function don(imp,p1){p1=p1||250;if(imp<=0)return 0;return imp<=p1?imp*.2:p1*.2+(imp-p1)*.25;}
+const ST={};
+const CATS=[
+  {id:'fa',l:'Familia y Menores',ic:'👨‍👩‍👧‍👦'},
+  {id:'di',l:'Discapacidad y Mayores',ic:'♿'},
+  {id:'ar',l:'Vivienda · Arrendador',ic:'🏠'},
+  {id:'vi',l:'Vivienda · Arrendatario / Adquirente',ic:'🔑'},
+  {id:'re',l:'Energía Renovable',ic:'☀️'},
+  {id:'do',l:'Donaciones y Mecenazgo',ic:'🤝'},
+  {id:'in',l:'Inversión Empresarial',ic:'📈'},
+  {id:'ot',l:'Otras Deducciones',ic:'⭐'},
+  {id:'co',l:'Medidas COVID-19',ic:'🦠'},
+  {id:'da',l:'DANA Octubre 2024',ic:'🌊'},
+];
+const D=[
+{id:'d01',cat:'fa',n:'01',nom:'Nacimiento, adopción, delegación de guarda o acogimiento familiar',nrm:'Art. 4.Uno.a) | Modificado Ley 5/2025',
+ req:'<b>Cuantía:</b> 600 € (1.er hijo) / 750 € (2.º) / 900 € (3.º y ss.). En acogimiento, mismos importes si comprende la totalidad del período. <b>Temporal:</b> Aplicable también en los 2 ejercicios siguientes al nacimiento/adopción. <b>BL:</b> ≤ 30.000 € (indiv.) / 47.000 € (conj.) — reducción gradual desde 27.000 / 44.000 €. <b>Compatible</b> con d02, d03 y d04. <b>Incompatible</b> con importes adicionales de la deducción por despoblamiento (d29).',
+ inp:[{id:'o',l:'Orden del hijo/acogido',t:'s',op:[{v:'0',l:'— Seleccionar —'},{v:'600',l:'1.º hijo → 600 €'},{v:'750',l:'2.º hijo → 750 €'},{v:'900',l:'3.º o posterior → 900 €'}]},{id:'n',l:'Número de hijos con ese orden',t:'num',ph:'1'}],
+ fn(i,bl,m){const v=parseFloat(i.o||0)*(parseFloat(i.n)||1);if(!v)return{v:0,d:''};const r=rBL(v,bl,m);return{v:r,d:`${F(v)} → ${F(r)} tras límite BL`};}},
+{id:'d02',cat:'fa',n:'02',nom:'Nacimiento o adopción múltiples',nrm:'Art. 4.Uno.b)',
+ req:'<b>Cuantía:</b> 246 € por parto múltiple o 2+ adopciones constituidas en la misma fecha. <b>BL:</b> ≤ 30.000 / 47.000 € — reducción gradual desde 27.000 / 44.000 €. <b>Compatible</b> con d01, d03, d04.',
+ inp:[{id:'a',l:'¿Se ha producido parto o adopción múltiple?',t:'s',op:[{v:'0',l:'No'},{v:'1',l:'Sí'}]},{id:'n',l:'Número de partos/adopciones múltiples',t:'num',ph:'1'}],
+ fn(i,bl,m){if(!+i.a)return{v:0,d:''};const n=parseFloat(i.n)||1;const r=rBL(246*n,bl,m);return{v:r,d:`246 × ${n} = ${F(246*n)} → ${F(r)}`};}},
+{id:'d03',cat:'fa',n:'03',nom:'Nacimiento, adopción, acogimiento o delegación de guarda de persona con discapacidad',nrm:'Art. 4.Uno.c) | Ley 5/2025',
+ req:'<b>Cuantía:</b> 246 € si es el único hijo/acogido con discapacidad ≥ 65% (física/sensorial) o ≥ 33% intelectual/mental permanente. 303 € si convive con otra persona que dé derecho a esta deducción. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Compatible</b> con d01, d02, d04.',
+ inp:[{id:'t',l:'Situación',t:'s',op:[{v:'0',l:'— Seleccionar —'},{v:'246',l:'Único hijo/acogido con discapacidad → 246 €'},{v:'303',l:'Convive con otra persona discapacitada → 303 €'}]},{id:'n',l:'Número de personas',t:'num',ph:'1'}],
+ fn(i,bl,m){const v=parseFloat(i.t||0)*(parseFloat(i.n)||1);if(!v)return{v:0,d:''};const r=rBL(v,bl,m);return{v:r,d:`${F(v)} → ${F(r)}`};}},
+{id:'d04',cat:'fa',n:'04',nom:'Familia numerosa o monoparental',nrm:'Art. 4.Uno.d)',
+ req:'<b>General:</b> 330 € — BL ≤ 30.000 / 47.000 €, reducción desde 27.000 / 44.000 €. <b>Especial:</b> 660 € — BL ≤ 35.000 / 58.000 €, reducción desde 31.000 / 54.000 €. Reconocimiento conforme a Ley 40/2003 (numerosa) y D. 19/2018 (monoparental CV). <b>Compatible</b> con d01, d02, d03.',
+ inp:[{id:'c',l:'Categoría',t:'s',op:[{v:'0',l:'— Seleccionar —'},{v:'G',l:'Categoría general → 330 €'},{v:'E',l:'Categoría especial → 660 €'}]}],
+ fn(i,bl,m){if(!i.c||i.c==='0')return{v:0,d:''};if(i.c==='G'){const r=rBL(330,bl,m);return{v:r,d:`330 € → ${F(r)}`};}const r=rBL(660,bl,m,{i:[31000,35000],c:[54000,58000]});return{v:r,d:`660 € → ${F(r)}`};}},
+{id:'d05',cat:'fa',n:'05',nom:'Custodia en guarderías / 1.er ciclo de educación infantil (menores de 3 años)',nrm:'Art. 4.Uno.e) | Ley 5/2025',
+ req:'<b>Cuantía:</b> 15% de las cantidades satisfechas. <b>Límite máximo:</b> 297 € por menor. <b>Req.:</b> Los padres/acogedores deben percibir rendimientos del trabajo o de actividades económicas. Pago obligatorio por vía bancaria. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Incompatible</b> con d11.',
+ inp:[{id:'n',l:'Número de menores de 3 años en guardería',t:'num',ph:'1'},{id:'p',l:'Total cantidades satisfechas (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const n=parseFloat(i.n)||0;const p=parseFloat(i.p)||0;if(!n||!p)return{v:0,d:''};const lim=297*n;const c=Math.min(p*.15,lim);const r=rBL(c,bl,m);return{v:r,d:`15% × ${F(p)} = ${F(p*.15)} | Límite: ${F(lim)} → ${F(c)} → ${F(r)}`};}},
+{id:'d06',cat:'fa',n:'06',nom:'Conciliación del trabajo con la vida familiar (hijos 3-5 años)',nrm:'Art. 4.Uno.f) | Ley 5/2025',
+ req:'<b>Cuantía:</b> 460 € por cada hijo/acogido/guardado mayor de 3 y menor de 5 años. <b>Titular:</b> Corresponde exclusivamente a la madre (o acogedora/guardadora) dada de alta en SS o mutualidad. <b>Límite:</b> Cotizaciones SS totales devengadas (límite global conjunto desde Ley 5/2025). Cálculo proporcional por meses. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Incompatible</b> con d11.',
+ inp:[{id:'n',l:'N.º de hijos/acogidos entre 3 y 5 años',t:'num',ph:'1'},{id:'c',l:'Cotizaciones SS totales devengadas (límite global, opcional) (€)',t:'num',ph:'Sin límite'}],
+ fn(i,bl,m){const n=parseFloat(i.n)||0;if(!n)return{v:0,d:''};let v=460*n;const c=parseFloat(i.c)||0;if(c>0)v=Math.min(v,c);const r=rBL(v,bl,m);return{v:r,d:`460 × ${n} = ${F(460*n)}${c>0?' | Lím. cotiz.: '+F(c):''} → ${F(r)}`};}},
+{id:'d07',cat:'fa',n:'07',nom:'Contribuyentes con dos o más descendientes',nrm:'Art. 4.Uno.t)',
+ req:'<b>Cuantía:</b> 10% de la cuota íntegra autonómica minorada (casilla [0546] menos minoraciones estatales, excluida la propia deducción). <b>Límite especial de renta:</b> Suma de BASES IMPONIBLES (no liquidables, casillas [0435]+[0460]) de todos los declarantes con derecho, sus descendientes y demás miembros de la unidad familiar ≤ 30.000 €.',
+ inp:[{id:'q',l:'Cuota íntegra autonómica minorada (€)',t:'num',ph:'0'},{id:'bi',l:'Suma Bases Imponibles (gral.+ahorro) de todos los declarantes, descendientes y demás miembros (€)',t:'num',ph:'0'}],
+ fn(i){const q=parseFloat(i.q)||0;const bi=parseFloat(i.bi)||0;if(!q)return{v:0,d:''};if(bi>30000)return{v:0,d:`BI ${F(bi)} > 30.000 € → sin derecho`};return{v:q*.1,d:`10% × ${F(q)} = ${F(q*.1)}`};}},
+{id:'d08',cat:'fa',n:'08',nom:'Cantidades destinadas a la adquisición de material escolar',nrm:'Art. 4.Uno.v) | Ley 5/2025',
+ req:'<b>Cuantía:</b> 110 € por cada hijo/acogido/guardado escolarizado en centro público o concertado de la CV (Ed. Primaria, ESO o Ed. Especial). <b>Req. adicional:</b> El contribuyente debe estar en situación de desempleo e inscrito como demandante de empleo. Se prorratea por días de desempleo. Pago bancario obligatorio. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'n',l:'N.º de hijos/acogidos escolarizados que cumplen los requisitos',t:'num',ph:'1'},{id:'d',l:'Días en situación de desempleo inscrito en el período (máx. 365)',t:'num',ph:'365'}],
+ fn(i,bl,m){const n=parseFloat(i.n)||0;const d=Math.min(parseFloat(i.d)||365,365);if(!n)return{v:0,d:''};const v=110*n*(d/365);const r=rBL(v,bl,m);return{v:r,d:`110 × ${n} × (${d}/365) = ${F(v)} → ${F(r)}`};}},
+{id:'d09',cat:'di',n:'09',nom:'Contribuyente con discapacidad ≥ 33% y edad ≥ 65 años',nrm:'Art. 4.Uno.g)',
+ req:'<b>Cuantía:</b> 197 € por contribuyente. <b>Req.:</b> Edad ≥ 65 años a 31/12 Y discapacidad ≥ 33% acreditada mediante certificado. <b>No procede</b> si el contribuyente percibe alguna prestación exenta del IRPF derivada de esa discapacidad. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'a',l:'¿Cumple los requisitos? (edad ≥65, discap. ≥33%, sin prestación exenta)',t:'s',op:[{v:'0',l:'No'},{v:'1',l:'Sí'}]}],
+ fn(i,bl,m){if(!+i.a)return{v:0,d:''};const r=rBL(197,bl,m);return{v:r,d:`197 € → ${F(r)}`};}},
+{id:'d10',cat:'di',n:'10',nom:'Ascendientes mayores de 75 años o mayores de 65 años con discapacidad',nrm:'Art. 4.Uno.h)',
+ req:'<b>Cuantía:</b> 197 € por ascendiente (línea directa, consanguinidad, afinidad o adopción) > 75 años, o > 65 con discap. ≥ 65% o discap. intelectual/mental permanente ≥ 33%. <b>Req.:</b> Convivencia ≥ mitad del período, rentas del ascendiente ≤ 8.000 € (excl. exentas), no presenta declaración con rentas > 1.800 €. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Incompatible</b> con d11.',
+ inp:[{id:'n',l:'Número de ascendientes que cumplen todos los requisitos',t:'num',ph:'1'}],
+ fn(i,bl,m){const n=parseFloat(i.n)||0;if(!n)return{v:0,d:''};const v=197*n;const r=rBL(v,bl,m);return{v:r,d:`197 × ${n} = ${F(v)} → ${F(r)}`};}},
+{id:'d11',cat:'di',n:'11',nom:'Contratación indefinida de empleado de hogar (SS) para cuidado de personas',nrm:'Art. 4.Uno.i)',
+ req:'<b>Cuantía:</b> 50% de cuotas SS satisfechas. <b>Límites máximos:</b> Descendientes: 660 € (1 menor < 5 años) / 1.100 € (2+ o monoparental). Ascendientes: 330 € (1) / 550 € (2+). Límites iguales en individual y conjunta. NIF del empleado en Anexo B.7. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Incompatible</b> con d05, d06 y d10.',
+ inp:[{id:'c',l:'Cuotas SS satisfechas (€)',t:'num',ph:'0'},{id:'l',l:'Límite máximo aplicable según situación',t:'s',op:[{v:'660',l:'1 descendiente < 5 años → 660 €'},{v:'1100',l:'2+ descendientes / monoparental → 1.100 €'},{v:'330',l:'1 ascendiente → 330 €'},{v:'550',l:'2+ ascendientes → 550 €'}]}],
+ fn(i,bl,m){const c=parseFloat(i.c)||0;const l=parseFloat(i.l)||660;if(!c)return{v:0,d:''};const v=Math.min(c*.5,l);const r=rBL(v,bl,m);return{v:r,d:`50% × ${F(c)} = ${F(c*.5)} | Límite: ${F(l)} → ${F(v)} → ${F(r)}`};}},
+{id:'d12',cat:'ar',n:'12',nom:'Rentas de arrendamiento de vivienda con renta ≤ precio referencia CV (arrendador)',nrm:'Art. 4.Uno.j)',
+ req:'<b>Cuantía:</b> 5% de los rendimientos íntegros. <b>Base máxima:</b> 3.300 € anuales. <b>Req.:</b> Contrato iniciado en el período; destino a vivienda habitual del arrendatario; renta mensual dentro del precio de referencia de la CV (visor cartográfico GVA); depósito de fianza constituido a favor de la Generalitat antes del fin del período. Si contrato anterior < 3 años, los nuevos arrendatarios no deben coincidir con los anteriores. <b>Sin límite de BL para el arrendador.</b>',
+ inp:[{id:'r',l:'Rendimientos íntegros del arrendamiento en el período (€)',t:'num',ph:'0'}],
+ fn(i){const r=parseFloat(i.r)||0;if(!r)return{v:0,d:''};const b=Math.min(r,3300);return{v:b*.05,d:`5% × min(${F(r)}, 3.300 €) = ${F(b*.05)}`};}},
+{id:'d13',cat:'vi',n:'13',nom:'Primera adquisición de vivienda habitual — contribuyente ≤ 35 años',nrm:'Art. 4.Uno.k)',
+ req:'<b>Cuantía:</b> 5% de las cantidades satisfechas, excluidos intereses. <b>Req.:</b> Primera adquisición; edad ≤ 35 años a 31/12; pago obligatorio por vía bancaria; el patrimonio al final del período debe exceder al del inicio en al menos la inversión realizada. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Compatible</b> con d14. <b>Incompatible</b> con d15 para las mismas cantidades.',
+ inp:[{id:'p',l:'Cantidades satisfechas en el período (excluidos intereses) (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const p=parseFloat(i.p)||0;if(!p)return{v:0,d:''};const r=rBL(p*.05,bl,m);return{v:r,d:`5% × ${F(p)} = ${F(p*.05)} → ${F(r)}`};}},
+{id:'d14',cat:'vi',n:'14',nom:'Adquisición de vivienda habitual — persona con discapacidad',nrm:'Art. 4.Uno.l)',
+ req:'<b>Cuantía:</b> 5% de las cantidades satisfechas, excluidos intereses. <b>Req.:</b> Discapacidad ≥ 65% o discap. intelectual/mental permanente ≥ 33%; pago bancario obligatorio; requisito patrimonial igual que d13. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Compatible</b> con d13. <b>Incompatible</b> con d15 para las mismas cantidades.',
+ inp:[{id:'p',l:'Cantidades satisfechas en el período (excluidos intereses) (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const p=parseFloat(i.p)||0;if(!p)return{v:0,d:''};const r=rBL(p*.05,bl,m);return{v:r,d:`5% × ${F(p)} = ${F(p*.05)} → ${F(r)}`};}},
+{id:'d15',cat:'vi',n:'15',nom:'Cantidades de ayudas públicas para adquisición o rehabilitación de vivienda habitual',nrm:'Art. 4.Uno.m)',
+ req:'<b>Opción A:</b> 112 € fijos. <b>Opción B:</b> Tipo medio de gravamen general autonómico × cuantía de la ayuda pública. Si se cumplen ambas, el contribuyente debe optar por una. Req.: El contribuyente ha destinado cantidades procedentes de subvención de la Generalitat (presupuesto propio o del Estado) a la adquisición o rehabilitación de vivienda habitual. <b>Incompatible</b> con d13 y d14 para las mismas cantidades.',
+ inp:[{id:'o',l:'Opción a aplicar',t:'s',op:[{v:'0',l:'— Seleccionar —'},{v:'A',l:'Opción A — 112 € fijos'},{v:'B',l:'Opción B — tipo medio × ayuda pública'}]},{id:'ay',l:'Cuantía de la ayuda pública recibida (solo Opción B) (€)',t:'num',ph:'0'},{id:'tm',l:'Tipo medio de gravamen general autonómico % (solo Opción B)',t:'num',ph:'p.ej. 15'}],
+ fn(i){if(!i.o||i.o==='0')return{v:0,d:''};if(i.o==='A')return{v:112,d:'112 € fijos (Opción A)'};const ay=parseFloat(i.ay)||0;const tm=parseFloat(i.tm)||0;if(!ay||!tm)return{v:0,d:'Introduce la ayuda y el tipo medio'};return{v:ay*(tm/100),d:`${F(ay)} × ${tm}% = ${F(ay*(tm/100))}`};}},
+{id:'d16',cat:'vi',n:'16',nom:'Arrendamiento o cesión en uso de la vivienda habitual (arrendatario)',nrm:'Art. 4.Uno.n)',
+ req:'<b>%/Límite:</b> 20%/800 € (general) | 25%/950 € (≤35 años, discap. ≥65%/33% permanente o víctima VG) | 30%/1.100 € (2+ condiciones). <b>Req.:</b> Contrato posterior al 23/04/1998, duración ≥ 1 año; vivienda habitual ocupada efectivamente; ni el contribuyente ni su unidad familiar titulares de otra vivienda a < 50 km; sin derecho a deducción estatal por inversión en VH; pago bancario obligatorio. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Compatible</b> con d17.',
+ inp:[{id:'p',l:'Cantidades satisfechas en el período (€)',t:'num',ph:'0'},{id:'t',l:'Situación del arrendatario',t:'s',op:[{v:'g',l:'General → 20%, límite 800 €'},{v:'e',l:'≤35 años / discap. / víctima VG → 25%, límite 950 €'},{v:'d',l:'Dos o más condiciones → 30%, límite 1.100 €'}]}],
+ fn(i,bl,m){const p=parseFloat(i.p)||0;if(!p)return{v:0,d:''};const cfg={g:[.2,800],e:[.25,950],d:[.3,1100]};const[pct,lim]=cfg[i.t||'g'];const v=Math.min(p*pct,lim);const r=rBL(v,bl,m);return{v:r,d:`${(pct*100).toFixed(0)}% × ${F(p)} = ${F(p*pct)} | Límite: ${F(lim)} → ${F(r)}`};}},
+{id:'d17',cat:'vi',n:'17',nom:'Arrendamiento de vivienda por actividad en municipio distinto',nrm:'Art. 4.Uno.ñ)',
+ req:'<b>Cuantía:</b> 10% de las cantidades satisfechas. <b>Límite:</b> 224 € (prorrateado por días de vigencia). <b>Req.:</b> Vivienda en la CV a más de 50 km de la residencia anterior; las cantidades no son retribuidas por el empleador; pago bancario obligatorio. Solo tiene derecho el titular del contrato que reside en la vivienda. <b>BL:</b> ≤ 30.000 / 47.000 €. <b>Compatible</b> con d16.',
+ inp:[{id:'p',l:'Cantidades satisfechas (€)',t:'num',ph:'0'},{id:'d',l:'Días de vigencia del arrendamiento en el período (máx. 365)',t:'num',ph:'365'}],
+ fn(i,bl,m){const p=parseFloat(i.p)||0;const d=Math.min(parseFloat(i.d)||365,365);if(!p)return{v:0,d:''};const lim=224*(d/365);const v=Math.min(p*.1,lim);const r=rBL(v,bl,m);return{v:r,d:`10% × ${F(p)} | Límite: ${F(lim)} → ${F(v)} → ${F(r)}`};}},
+{id:'d18',cat:'vi',n:'18',nom:'Obras de conservación / mejora de calidad, sostenibilidad y accesibilidad en vivienda habitual (desde 2017)',nrm:'Art. 4.Uno.w)',
+ req:'<b>Cuantía:</b> 20% para obras generales de conservación/mejora (desde 01/01/2017). 50% para obras de accesibilidad de personas con discap. ≥33% (desde 01/01/2022). <b>Base máxima anual:</b> 5.500 € por vivienda (ponderada por % de titularidad). <b>Req.:</b> Obras subvencionables por Plan de Recuperación o Plan Estatal Vivienda 2022-2025; NIF obligatorio del ejecutor; pago bancario. <b>Excluye:</b> garajes/jardines/piscinas (salvo accesibilidad), inversiones en renovables (incompatible con d21) y parte subvencionada. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'g',l:'Cantidades por obras generales de mejora (€)',t:'num',ph:'0'},{id:'a',l:'Cantidades por obras de accesibilidad para discapacidad ≥33% (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const g=parseFloat(i.g)||0;const a=parseFloat(i.a)||0;if(!g&&!a)return{v:0,d:''};const tot=g+a;const ratio=tot>5500?5500/tot:1;const v=(g*.2+a*.5)*ratio;const r=rBL(v,bl,m);return{v:r,d:`20%×${F(g)} + 50%×${F(a)} | Base cap 5.500 € (f.${ratio.toFixed(3)}) → ${F(v)} → ${F(r)}`};}},
+{id:'d19',cat:'vi',n:'19',nom:'Obras de conservación / mejora en vivienda habitual realizadas en 2014 y 2015',nrm:'Disposición adicional 13.ª',
+ req:'<b>Cuantía:</b> 10% por obras realizadas en 2014 / 25% por obras realizadas en 2015. <b>Base máx. anual:</b> 4.500 €. <b>Base máx. acumulada</b> por vivienda: 5.000 €. <b>BL más restrictiva:</b> ≤ 25.000 € (indiv.) / 40.000 € (conj.), reducción desde 23.000 / 37.000 €. Pago bancario obligatorio; NIF del ejecutor.',
+ inp:[{id:'p14',l:'Cantidades por obras de 2014 satisfechas en el período (€)',t:'num',ph:'0'},{id:'p15',l:'Cantidades por obras de 2015 satisfechas en el período (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const p14=parseFloat(i.p14)||0;const p15=parseFloat(i.p15)||0;if(!p14&&!p15)return{v:0,d:''};const ls=m==='i'?25000:40000;if(bl>=ls&&bl>0)return{v:0,d:`BL ≥ ${F(ls)} → sin derecho`};const v=Math.min(p14*.1+p15*.25,4500);const r=rBL(v,bl,m,{i:[23000,25000],c:[37000,40000]});return{v:r,d:`10%×${F(p14)} + 25%×${F(p15)} | Límite anual 4.500 € → ${F(v)} → ${F(r)}`};}},
+{id:'d20',cat:'vi',n:'20',nom:'Incremento de costes de la financiación ajena en la inversión de vivienda habitual',nrm:'Art. 4.Uno.u)',
+ req:'<b>Cuantía:</b> 50% de la diferencia positiva entre los intereses abonados en 2025 y los satisfechos en 2024. <b>Límite:</b> 100 € anuales. <b>Req.:</b> Préstamo para adquisición, rehabilitación o adecuación por discapacidad de la vivienda habitual. Solo aplicable a quienes <b>NO</b> aplicaron la deducción estatal por inversión en vivienda habitual. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'a',l:'Intereses abonados en 2025 (€)',t:'num',ph:'0'},{id:'b',l:'Intereses abonados en 2024 (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const a=parseFloat(i.a)||0;const b=parseFloat(i.b)||0;const dif=a-b;if(dif<=0)return{v:0,d:`Sin diferencia positiva (${F(a)} − ${F(b)})`};const v=Math.min(dif*.5,100);const r=rBL(v,bl,m);return{v:r,d:`50% × ${F(dif)} = ${F(dif*.5)} | Límite 100 € → ${F(r)}`};}},
+{id:'d21',cat:'re',n:'21',nom:'Instalaciones de autoconsumo o generación de energía eléctrica / térmica mediante fuentes renovables',nrm:'Art. 4.Uno.o)',
+ req:'<b>Cuantía:</b> 40% para instalaciones en vivienda habitual; 20% para segunda residencia no afecta a actividad económica. <b>Base máxima:</b> 8.800 € por vivienda y ejercicio. Excesos por insuficiencia de cuota trasladables hasta 4 ejercicios siguientes. <b>No computa:</b> la parte financiada con subvención, ni instalaciones obligatorias por el CTE. <b>Req.:</b> Vivienda en la CV; no es necesaria la titularidad del inmueble; autoconsumo eléctrico inscrito en el Registro; pago bancario; requisito patrimonial. <b>Incompatible</b> con d18 para las mismas inversiones.',
+ inp:[{id:'h',l:'Cantidades invertidas en vivienda habitual (€)',t:'num',ph:'0'},{id:'s',l:'Cantidades invertidas en segunda residencia (€)',t:'num',ph:'0'},{id:'sb',l:'Parte financiada con subvención pública (a restar de la base) (€)',t:'num',ph:'0'}],
+ fn(i){const h=parseFloat(i.h)||0;const s=parseFloat(i.s)||0;const sb=parseFloat(i.sb)||0;if(!h&&!s)return{v:0,d:''};const tot=h+s;const bn=Math.max(0,tot-sb);const bc=Math.min(bn,8800);const rH=tot>0?h/tot:0,rS=tot>0?s/tot:0;const v=bc*rH*.4+bc*rS*.2;return{v:v,d:`40%×${F(h)} + 20%×${F(s)} − subv. ${F(sb)} | Base cap 8.800 € → ${F(v)}`};}},
+{id:'d22',cat:'do',n:'22',nom:'Donaciones con finalidad ecológica',nrm:'Art. 4.Uno.p)',
+ req:'<b>Cuantía:</b> 20% sobre los primeros 250 € + 25% sobre el resto. <b>Entidades:</b> Generalitat y CC.LL. de la CV, entidades públicas de defensa del medio ambiente, fundaciones y asociaciones de utilidad pública con fin exclusivo de defensa del medio ambiente inscritas en la CV. Pago bancario obligatorio.',
+ inp:[{id:'d',l:'Importe total donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d);return{v:r,d:`20%×min(${F(d)},250€) + 25%×resto = ${F(r)}`};}},
+{id:'d23',cat:'do',n:'23',nom:'Donaciones de bienes del Patrimonio Cultural Valenciano',nrm:'Art. 4.Uno.q)',
+ req:'<b>Cuantía:</b> 20% primeros 250 € + 25% resto del valor de bienes inscritos en el Inventario General del PCV. <b>Entidades beneficiarias:</b> Ley 20/2018 (mecenazgo cultural): entidades sin ánimo de lucro, Generalitat, CC.LL., universidades, centros de investigación y enseñanzas artísticas de la CV, y entidades comparables en la UE/EEE con proyectos de interés social. Pago bancario.',
+ inp:[{id:'d',l:'Valor del bien donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d);return{v:r,d:`20%×min(${F(d)},250€) + 25%×resto = ${F(r)}`};}},
+{id:'d24',cat:'do',n:'24',nom:'Donativos para conservación, reparación y restauración del PCV',nrm:'Art. 4.Uno.q) — Límite conjunto 30% BL',
+ req:'<b>Cuantía:</b> 20% primeros 250 € + 25% resto de cantidades dinerarias donadas para programas de conservación/restauración de bienes del PCV inscritos en el Inventario General. Mismas entidades beneficiarias que d23. Pago bancario. <b>Límite conjunto:</b> La base de d24+d25+d26+d27 no puede superar el 30% de la BL general + ahorro.',
+ inp:[{id:'d',l:'Importe total donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d);return{v:r,d:`20%×min(${F(d)},250€) + 25%×resto = ${F(r)}`};}},
+{id:'d25',cat:'do',n:'25',nom:'Cantidades destinadas por titulares a la conservación, reparación y restauración del PCV',nrm:'Art. 4.Uno.q) — Límite conjunto 30% BL',
+ req:'<b>Cuantía:</b> 20% primeros 250 € + 25% resto. Aplicable a los propios titulares de bienes del PCV inscritos en el Inventario General que destinan cantidades a su conservación, reparación y restauración. Pago bancario. <b>Límite conjunto:</b> d24+d25+d26+d27 ≤ 30% de la BL.',
+ inp:[{id:'d',l:'Cantidades destinadas (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d);return{v:r,d:`20%×min(${F(d)},250€) + 25%×resto = ${F(r)}`};}},
+{id:'d26',cat:'do',n:'26',nom:'Donaciones para el fomento de la Lengua Valenciana',nrm:'Art. 4.Uno.r) — Límite conjunto 30% BL',
+ req:'<b>Cuantía:</b> 20% primeros 250 € + 25% resto de las donaciones dinerarias a: Generalitat, entidades locales de la CV, universidades públicas y privadas de la CV, centros superiores de enseñanzas artísticas, entidades inscritas en el Censo de entidades de fomento del valenciano. Pago bancario. <b>Límite conjunto</b> d24+d25+d26+d27 ≤ 30% BL.',
+ inp:[{id:'d',l:'Importe total donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d);return{v:r,d:`20%×min(${F(d)},250€) + 25%×resto = ${F(r)}`};}},
+{id:'d27',cat:'do',n:'27',nom:'Donaciones / cesiones de uso o comodatos para fines culturales, científicos o deportivos no profesionales',nrm:'Art. 4.Uno.s) — Límite conjunto 30% BL',
+ req:'<b>Cuantía:</b> 25% del valor de donaciones o comodatos a proyectos declarados de interés social (Ley 20/2018). Si el donativo también da derecho a la deducción estatal Ley 49/2002: 20% sobre los primeros 250 € + 25% sobre el resto. La base de comodatos se calcula al 4% del valor catastral (locales) o de la valoración de la Junta de Valoración (bienes del PCV), proporcional por días. <b>Límite conjunto</b> d24+d25+d26+d27 ≤ 30% BL.',
+ inp:[{id:'d',l:'Valor de la donación o comodato (€)',t:'num',ph:'0'},{id:'l',l:'¿Se aplica también deducción estatal por Ley 49/2002?',t:'s',op:[{v:'0',l:'No → 25% sobre el total'},{v:'1',l:'Sí → 20% primeros 250 € + 25% resto'}]}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=+i.l?don(d):d*.25;return{v:r,d:+i.l?`20%×min(${F(d)},250€)+25%×resto=${F(r)}`:`25% × ${F(d)} = ${F(r)}`};}},
+{id:'d28',cat:'in',n:'28',nom:'Inversión en acciones / participaciones en entidades nuevas o de reciente creación',nrm:'Art. 4.Uno.z)',
+ req:'<b>General:</b> 30%, límite 6.600 €. <b>Incremento +15%</b> (total 45%, límite 15.000 €) si la entidad es PYME innovadora, tiene domicilio en municipio en riesgo de despoblamiento o es Empresa Emergente valenciana. Los límites son independientes si recaen sobre inversiones distintas. <b>Req. entidad:</b> Domicilio en CV durante 3 años; actividad económica durante 3 años; al menos 1 empleado a jornada completa en SS durante 3 años; en ampliaciones, sociedad constituida en los 5 años anteriores (7 para startups). Formalización en escritura pública. Mantenimiento de la participación ≥ 3 años. Importes no deducidos por insuficiencia de cuota trasladables a los 3 ejercicios siguientes. <b>Incompatible</b> con d39 respecto a la misma entidad.',
+ inp:[{id:'g',l:'Cantidades en régimen general (30%, límite 6.600 €) (€)',t:'num',ph:'0'},{id:'a',l:'Cantidades con derecho al +15% adicional (45% total, límite 15.000 €) (€)',t:'num',ph:'0'}],
+ fn(i){const g=parseFloat(i.g)||0;const a=parseFloat(i.a)||0;if(!g&&!a)return{v:0,d:''};const dg=Math.min(g*.3,6600);const da=Math.min(a*.45,15000);return{v:dg+da,d:`30%×${F(g)} lím.6.600=${F(dg)} | 45%×${F(a)} lím.15.000=${F(da)} | Total: ${F(dg+da)}`};}},
+{id:'d29',cat:'ot',n:'29',nom:'Residir habitualmente en municipio en riesgo de despoblamiento',nrm:'Art. 4.Uno.aa)',
+ req:'<b>Cuantía base:</b> 330 €. <b>Incremento:</b> +132 € (1 descendiente con mínimo) / +198 € (2) / +264 € (3+). Los incrementos se prorratean entre contribuyentes con derecho por los mismos descendientes. <b>Req.:</b> El municipio debe ser beneficiario del Fondo de Cooperación Municipal para la lucha contra el despoblamiento de los municipios de la CV en el ejercicio presupuestario 2024 o 2025. Sin límite de BL. <b>Incompatible</b> con d01, d02 y d03 para el mismo descendiente.',
+ inp:[{id:'a',l:'¿Reside en municipio beneficiario del Fondo de Cooperación 2024 o 2025?',t:'s',op:[{v:'0',l:'No'},{v:'1',l:'Sí'}]},{id:'d',l:'N.º descendientes con derecho al mínimo (excluidos los incluidos en d01-d03)',t:'s',op:[{v:'0',l:'Sin descendientes → 330 €'},{v:'132',l:'1 descendiente → +132 €'},{v:'198',l:'2 descendientes → +198 €'},{v:'264',l:'3 o más → +264 €'}]}],
+ fn(i){if(!+i.a)return{v:0,d:''};const v=330+(parseFloat(i.d)||0);return{v:v,d:`330 + ${parseFloat(i.d)||0} = ${F(v)}`};}},
+{id:'d30',cat:'ot',n:'30',nom:'Cantidades destinadas a abonos culturales (Abono Cultural Valenciano)',nrm:'Art. 4.Uno.x)',
+ req:'<b>Cuantía:</b> 21% de las cantidades satisfechas por adquisición de abonos culturales de empresas o instituciones adheridas al convenio del Abono Cultural Valenciano (Culturarts Generalitat). <b>Base máxima:</b> 165 € por período. <b>Límite de renta:</b> BL < 50.000 € (límite absoluto, sin fórmula de reducción gradual). Pago bancario obligatorio.',
+ inp:[{id:'p',l:'Cantidades satisfechas en abonos culturales (€)',t:'num',ph:'0'}],
+ fn(i){const bl2=BL();if(bl2>0&&bl2>=50000)return{v:0,d:`BL ≥ 50.000 € → sin derecho`};const p=parseFloat(i.p)||0;if(!p)return{v:0,d:''};const b=Math.min(p,165);return{v:b*.21,d:`21% × min(${F(p)}, 165 €) = ${F(b*.21)}`};}},
+{id:'d31',cat:'ot',n:'31',nom:'Adquisición de vehículos nuevos de movilidad (Orden 5/2020)',nrm:'Art. 4.Uno.y)',
+ req:'<b>Cuantía:</b> 10% del precio de compra neto de subvenciones, con base máxima según tipo: Bici convencional urbana: 550 € (750 € familiar); Bici eléctrica: 1.540 €; Kit electrificación: 660 €; VMP: 495 €. La parte financiada con subvención no computa. <b>Req.:</b> Vehículo nuevo; un único vehículo por contribuyente y período; el contribuyente debe figurar en la factura de compra; pago bancario. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'t',l:'Tipo de vehículo',t:'s',op:[{v:'0',l:'— Seleccionar —'},{v:'550',l:'Bicicleta convencional urbana → base máx. 550 €'},{v:'750',l:'Bicicleta familiar con carga infantil → base máx. 750 €'},{v:'1540',l:'Bicicleta eléctrica → base máx. 1.540 €'},{v:'660',l:'Kit de electrificación → base máx. 660 €'},{v:'495',l:'VMP (vehículo de movilidad personal) → base máx. 495 €'}]},{id:'p',l:'Precio de compra neto de subvenciones (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const bm=parseFloat(i.t)||0;const p=parseFloat(i.p)||0;if(!bm||!p)return{v:0,d:''};const b=Math.min(p,bm);const r=rBL(b*.1,bl,m);return{v:r,d:`10% × min(${F(p)}, ${F(bm)}) = ${F(b*.1)} → ${F(r)}`};}},
+{id:'d32',cat:'ot',n:'32',nom:'Cantidades satisfechas en tratamientos de fertilidad',nrm:'Art. 4.Uno.ab)',
+ req:'<b>Cuantía:</b> 100 € fijos. <b>Req.:</b> La contribuyente debe ser mujer con edad entre 40 y 45 años (ambos inclusive) a la fecha de devengo del IRPF (31/12); y haber satisfecho cantidades por tratamientos de fertilidad en clínicas o centros autorizados. Solo tiene derecho la mujer que recibe el tratamiento. <b>BL:</b> ≤ 30.000 / 47.000 €.',
+ inp:[{id:'a',l:'¿Cumple los requisitos? (mujer 40-45 años con tratamiento de fertilidad en centro autorizado)',t:'s',op:[{v:'0',l:'No'},{v:'1',l:'Sí'}]}],
+ fn(i,bl,m){if(!+i.a)return{v:0,d:''};const r=rBL(100,bl,m);return{v:r,d:`100 € → ${F(r)}`};}},
+{id:'d33',cat:'ot',n:'33',nom:'Cantidades satisfechas en determinados gastos de salud',nrm:'Art. 4.Uno.ac)',
+ req:'Subcategorías compatibles entre sí: <b>① Enf. crónicas/raras/Alzheimer/daño cerebral:</b> hasta 100 € (150 € familias numerosas/monoparentales). <b>② Salud bucodental no estética:</b> 30%, límite 150 €. <b>③ Salud mental:</b> 30%, límite 150 €. <b>④ Óptica</b> (gafas, lentes de contacto, soluciones): 30%, límite 100 €. Gastos del contribuyente, cónyuge y familiares con derecho al mínimo. Req.: prestación por profesional inscrito en el Registro; factura + informe facultativo + pago bancario. No computan primas de seguros médicos ni prestaciones reintegrables por SS. <b>BL:</b> ≤ 32.000 / 48.000 € (puede ampliarse a 60.000/78.000 € si se convalida el DL 1/2026).',
+ inp:[{id:'cr',l:'① Gastos enf. crónicas / raras / Alzheimer / daño cerebral (€)',t:'num',ph:'0'},{id:'fn',l:'¿Familia numerosa o monoparental? (amplía límite ① a 150 €)',t:'s',op:[{v:'0',l:'No (límite 100 €)'},{v:'1',l:'Sí (límite 150 €)'}]},{id:'de',l:'② Gastos salud bucodental no estética (€)',t:'num',ph:'0'},{id:'me',l:'③ Gastos atención salud mental (€)',t:'num',ph:'0'},{id:'op',l:'④ Gastos óptica — gafas, lentes de contacto, soluciones (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const lc=+i.fn?150:100;const cr=Math.min(parseFloat(i.cr)||0,lc);const de=Math.min((parseFloat(i.de)||0)*.3,150);const me=Math.min((parseFloat(i.me)||0)*.3,150);const op=Math.min((parseFloat(i.op)||0)*.3,100);const tot=cr+de+me+op;if(!tot)return{v:0,d:''};const r=rBL(tot,bl,m,{i:[29000,32000],c:[45000,48000]});return{v:r,d:`① ${F(cr)} | ② ${F(de)} | ③ ${F(me)} | ④ ${F(op)} | Total: ${F(tot)} → ${F(r)}`};}},
+{id:'d34',cat:'ot',n:'34',nom:'Gastos asociados a la práctica del deporte y actividades saludables',nrm:'Art. 4.Uno.ad)',
+ req:'<b>Cuantía:</b> 30% general / 50% si ≥65 años o discap. ≥33% / 100% si ≥75 años o discap. ≥65%. <b>Límite:</b> 150 € anuales por contribuyente. <b>Gastos deducibles:</b> cuotas de gimnasios, clubes deportivos, federaciones, grupos de recreación deportiva; equipamiento obligatorio para deporte federado; servicios de entrenadores deportivos, traumatólogos, dietistas-nutricionistas, fisioterapeutas, podólogos o técnicos superiores en Dietética. Gastos del contribuyente, cónyuge y familiares con derecho al mínimo. Pago bancario. <b>BL:</b> ≤ 32.000 / 48.000 €.',
+ inp:[{id:'g',l:'Total gastos deducibles satisfechos (€)',t:'num',ph:'0'},{id:'t',l:'Situación del contribuyente',t:'s',op:[{v:'0.3',l:'General → 30%'},{v:'0.5',l:'≥ 65 años o discapacidad ≥ 33% → 50%'},{v:'1',l:'≥ 75 años o discapacidad ≥ 65% → 100%'}]}],
+ fn(i,bl,m){const g=parseFloat(i.g)||0;const pct=parseFloat(i.t)||.3;if(!g)return{v:0,d:''};const v=Math.min(g*pct,150);const r=rBL(v,bl,m,{i:[29000,32000],c:[45000,48000]});return{v:r,d:`${(pct*100).toFixed(0)}% × ${F(g)} | Límite 150 € → ${F(v)} → ${F(r)}`};}},
+{id:'d35',cat:'co',n:'35',nom:'Ayudas ERTE Covid-19 percibidas de la Generalitat (Decreto Ley 3/2020)',nrm:'Disposición adicional 17.ª.a) Ley 13/1997',
+ req:'<b>Cuantía:</b> Tipo medio de gravamen general autonómico × cuantía de las ayudas integradas en la base imponible. <b>Req.:</b> Haber percibido ayudas del DL 3/2020 por ERTE o reducción de jornada por conciliación familiar durante el estado de alarma Covid-19, que hayan sido integradas en la base imponible.',
+ inp:[{id:'ay',l:'Cuantía de las ayudas integradas en la base imponible (€)',t:'num',ph:'0'},{id:'tm',l:'Tipo medio de gravamen general autonómico (%)',t:'num',ph:'p.ej. 14.5'}],
+ fn(i){const a=parseFloat(i.ay)||0;const t=parseFloat(i.tm)||0;if(!a||!t)return{v:0,d:''};return{v:a*(t/100),d:`${F(a)} × ${t}% = ${F(a*(t/100))}`};}},
+{id:'d36',cat:'co',n:'36',nom:'Donaciones a investigación, innovación y desarrollo contra el Covid-19',nrm:'Disposición adicional 17.ª.c)',
+ req:'<b>Cuantía:</b> 20% primeros 150 € + 25% resto de las donaciones dinerarias a: Generalitat y entidades instrumentales, entidades sin fines lucrativos con fin exclusivo de I+D+i en la CV, universidades públicas, institutos de investigación y centros tecnológicos valencianos.',
+ inp:[{id:'d',l:'Importe total donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d,150);return{v:r,d:`20%×min(${F(d)},150€) + 25%×resto = ${F(r)}`};}},
+{id:'d37',cat:'co',n:'37',nom:'Donaciones para financiar gastos de la crisis sanitaria Covid-19',nrm:'Disposición adicional 17.ª.d)',
+ req:'<b>Cuantía:</b> 20% primeros 150 € + 25% resto de las donaciones (dinerarias o en especie) realizadas conforme al art. 4 del DL 4/2020 (ingreso en cuenta del Tesoro de la Generalitat IBAN ES03 2100 8681 5002 0009 0086 u otras vías autorizadas por el Consell).',
+ inp:[{id:'d',l:'Importe total donado (€)',t:'num',ph:'0'}],
+ fn(i){const d=parseFloat(i.d)||0;if(!d)return{v:0,d:''};const r=don(d,150);return{v:r,d:`20%×min(${F(d)},150€) + 25%×resto = ${F(r)}`};}},
+{id:'d38',cat:'da',n:'38',nom:'Gastos de reparación de daños en vivienda habitual por la DANA (oct. 2024)',nrm:'Art. 4 Decreto Ley 12/2024 — Ejercicios 2024 y 2025',
+ req:'<b>Cuantía:</b> 100% de los gastos de reparación de daños causados directamente por el temporal en vivienda habitual, en la parte no cubierta por seguros. <b>Límite:</b> 2.000 €. Las ayudas públicas percibidas reducen la base. <b>Excluye:</b> enseres domésticos de primera necesidad e inmuebles afectos a actividades económicas. <b>Req.:</b> Vivienda en municipio incluido en el Anexo del Acuerdo del Consell de 4-11-2024; pago bancario obligatorio. <b>BL:</b> ≤ 45.000 / 60.000 €, reducción desde 40.000 / 55.000 €. <b>Saldos pendientes</b> trasladables hasta 4 ejercicios siguientes.',
+ inp:[{id:'g',l:'Gastos de reparación no cubiertos por seguro (€)',t:'num',ph:'0'},{id:'ay',l:'Ayudas públicas recibidas para esos mismos gastos (€)',t:'num',ph:'0'}],
+ fn(i,bl,m){const g=parseFloat(i.g)||0;const ay=parseFloat(i.ay)||0;const b=Math.max(0,g-ay);if(!b)return{v:0,d:''};const v=Math.min(b,2000);const r=rBL(v,bl,m,{i:[40000,45000],c:[55000,60000]});return{v:r,d:`100% × (${F(g)} − ${F(ay)}) = ${F(b)} | Límite 2.000 € → ${F(v)} → ${F(r)}`};}},
+{id:'d39',cat:'da',n:'39',nom:'Aportaciones a fondos propios de entidades con actividad económica afectadas por la DANA',nrm:'Art. 5 Decreto Ley 12/2024 — Inversiones entre 13/11/2024 y 31/12/2025',
+ req:'<b>Cuantía:</b> 45% de las cantidades invertidas en constitución o ampliación de capital de SA, SL, sociedades laborales o cooperativas. <b>Límite:</b> 9.900 € por contribuyente. La base no puede superar el 30% de la BL del contribuyente. <b>Req. entidad:</b> Domicilio en zona DANA; si ya existía a 12/11/2024 debe haber solicitado ERTE por el temporal; actividad económica durante 3 años; al menos 1 empleado a jornada completa en SS durante 3 años. Formalización en escritura pública. Mantenimiento participación ≥ 3 años. Saldos no deducidos trasladables a los 3 ejercicios siguientes. <b>Incompatible</b> con d28 respecto a la misma entidad.',
+ inp:[{id:'v',l:'Cantidades invertidas en constitución / ampliación de capital (€)',t:'num',ph:'0'}],
+ fn(i){const inv=parseFloat(i.v)||0;if(!inv)return{v:0,d:''};const bl2=BL();const bm=bl2>0?bl2*.3:inv;const b=Math.min(inv,bm);const v=Math.min(b*.45,9900);return{v:v,d:`45% × min(${F(inv)}, 30%×BL=${F(bm)}) = ${F(b*.45)} | Límite 9.900 € → ${F(v)}`};}},
+];
+
+function render(){
+  const c=document.getElementById('cont');c.innerHTML='';
+  CATS.forEach(cat=>{
+    const ds=D.filter(d=>d.cat===cat.id);if(!ds.length)return;
+    const s=document.createElement('div');s.className='cs';
+    const h=document.createElement('div');h.className='ch';
+    h.innerHTML=`<div class="ci">${cat.ic}</div><div class="cn"><div class="ct">${cat.l}</div><div class="cc">${ds.length} deducción${ds.length>1?'es':''}</div></div><div class="ctg">▼</div>`;
+    const b=document.createElement('div');b.className='cb';
+    ds.forEach(d=>b.appendChild(mkCard(d)));
+    h.onclick=()=>{h.classList.toggle('open');b.classList.toggle('show');};
+    s.append(h,b);c.appendChild(s);
+  });
+}
+
+function mkCard(d){
+  const c=document.createElement('div');c.className='dc';c.id='c-'+d.id;
+  const h=document.createElement('div');h.className='dh';
+  h.innerHTML=`<div class="dn">${d.n}</div><div class="dt">${d.nom}</div><div class="dp2 z" id="pv-${d.id}">—</div><div class="dchv">▼</div>`;
+  h.onclick=()=>c.classList.toggle('open');
+  let inp='';
+  d.inp.forEach(i=>{
+    if(i.t==='s') inp+=`<div class="fr"><label>${i.l}</label><select id="i-${d.id}-${i.id}" onchange="calc('${d.id}')"><option value="">—</option>${i.op.map(o=>`<option value="${o.v}">${o.l}</option>`).join('')}</select></div>`;
+    else inp+=`<div class="fr"><label>${i.l}</label><input type="number" id="i-${d.id}-${i.id}" placeholder="${i.ph||''}" min="0" oninput="calc('${d.id}')"></div>`;
+  });
+  const b=document.createElement('div');b.className='db';
+  b.innerHTML=`<div class="nm">${d.nrm}</div><div class="req">${d.req}</div><div class="di">${inp}</div><div class="rb neu" id="rb-${d.id}"><div class="rl">Deducción estimada</div><div class="rv n" id="rv-${d.id}">—</div><div class="rd" id="rd-${d.id}">Introduce los datos para calcular</div></div>`;
+  c.append(h,b);return c;
+}
+
+function calc(id){
+  const d=D.find(x=>x.id===id);if(!d)return;
+  const bl=BL(),m=MOD()==='i'?'i':'c';
+  const inp={};d.inp.forEach(i=>{const el=document.getElementById(`i-${id}-${i.id}`);inp[i.id]=el?el.value:'';});
+  const res=d.fn(inp,bl,m);
+  ST[id]=res.v||0;
+  const rb=document.getElementById('rb-'+id),rv=document.getElementById('rv-'+id),rd=document.getElementById('rd-'+id),pv=document.getElementById('pv-'+id),card=document.getElementById('c-'+id);
+  if(res.v>0){rb.className='rb pos';rv.className='rv';rv.textContent=F(res.v);pv.className='dp2';pv.textContent=F(res.v);card.classList.add('hv');}
+  else if(res.v===0&&res.d){rb.className='rb zer';rv.className='rv z';rv.textContent='0,00 €';pv.className='dp2 z';pv.textContent='0,00 €';card.classList.remove('hv');}
+  else{rb.className='rb neu';rv.className='rv n';rv.textContent='—';pv.className='dp2 z';pv.textContent='—';card.classList.remove('hv');}
+  rd.textContent=res.d||'Introduce los datos para calcular';
+  updTotal();
+}
+
+function recalcAll(){D.forEach(d=>{const has=d.inp.some(i=>{const el=document.getElementById(`i-${d.id}-${i.id}`);return el&&el.value&&el.value!=='0'&&el.value!=='';});if(has)calc(d.id);});}
+
+function updTotal(){
+  let tot=0;const items=[];
+  D.forEach(d=>{const v=ST[d.id]||0;if(v>0){tot+=v;items.push({n:`#${d.n} ${d.nom}`,v});}});
+  document.getElementById('th').textContent=F(tot);
+  const rl=document.getElementById('rl');
+  if(!items.length){rl.innerHTML='<p class="re">Sin deducciones calculadas aún.</p>';return;}
+  rl.innerHTML=items.map(it=>`<div class="ri"><div class="rin">${it.n}</div><div class="ria">${F(it.v)}</div></div>`).join('')+`<div class="rtrow"><span class="rtl">Total estimado</span><span class="rta">${F(tot)}</span></div>`;
+}
+render();
+</script>
+</body>
+</html>
